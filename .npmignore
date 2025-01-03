@@ -1,0 +1,8 @@
+# Ignorar todo lo demás excepto la carpeta dist
+src/
+.babelrc
+.gitignore
+README.md
+package.json
+*.log
+node_modules/

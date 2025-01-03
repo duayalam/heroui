@@ -1,4 +1,5 @@
 "use client"
+import React from 'react';
 import Ripples from 'react-ripples'
 const Button = ({ color, size, className, ...props }) => {
 
@@ -33,7 +34,7 @@ const Button = ({ color, size, className, ...props }) => {
 
 
     return (
-        <Ripples className={`rounded backdrop-opacity-5`} >
+        <Ripples className={`rounded backdrop-opacity-5 ${className?className:''}`} >
             <button  className={`${buttonDefault} ${className?className:''}`} {...props}>{props.children}</button>
         </Ripples>
     )

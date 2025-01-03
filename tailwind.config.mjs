@@ -14,4 +14,7 @@ export default {
     },
   },
   plugins: [],
+  purge: {
+    enabled: true,
+  },
 };

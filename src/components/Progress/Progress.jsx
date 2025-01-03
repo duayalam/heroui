@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useState } from "react";
 
 const Progress = ({ value, color, label, ...props }) => {

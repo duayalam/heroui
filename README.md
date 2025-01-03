@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# HeroUI Tailwind: Component Library Usage Guide
 
-## Getting Started
+This document provides a practical guide to using HeroUI Tailwind components with concrete examples.
 
-First, run the development server:
+## Installation
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1.  **Install the package:**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    ```bash
+    npm install heroui-tailwind
+    ```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Configuration
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1.  **Update Tailwind CSS configuration (`tailwind.config.js`):**
 
-## Learn More
+    ```javascript
+    /** @type {import('tailwindcss').Config} */
+    module.exports = {
+      content: [
+        "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+        "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+        "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+        "./node_modules/heroui-tailwind/**/*.{js,jsx,ts,tsx}", // Important!
+      ],
+      theme: {
+        extend: {
+          colors: {
+            background: "var(--background)",
+            foreground: "var(--foreground)",
+          },
+        },
+      },
+      plugins: [],
+    };
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+## Usage Examples
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This section demonstrates the usage of various HeroUI Tailwind components within a functional React component.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```jsx
+"use client";
+import {
+  Button,
+  Input,
+  Alert,
+  Modal,
+  ModalTitle,
+  ModalFooter,
+  Progress,
+  Select,
+} from "@/components/index"; // Adjust path as needed
+import { useState } from "react";
 
-## Deploy on Vercel
+export default function Home() {
+  const [isModalOpen, setModalOpen] = useState(false);
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+  const options = [
+    { value: "apple", label: "Apple" },
+    { value: "banana", label: "Banana" },
+    { value: "cherry", label: "Cherry" },
+    { value: "date", label: "Date" },
+    { value: "elderberry", label: "Elderberry" },
+  ];
+
+  return (
+    <div className="p-5"> {/* Added padding for better visualization */}
+      <h2>Alerts</h2>
+      <Alert type="dark" isOpen showCloseButton> {/* Simplified props */}
+        Dark Alert
+      </Alert>
+      <Alert type="red" isOpen showCloseButton>
+        Red Alert
+      </Alert>
+      <Alert type="blue" isOpen> {/* No close button */}
+        Blue Alert
+      </Alert>
+
+      <h2>Buttons</h2>
+      <Button color="white" size="sm">
+        Small Button
+      </Button>
+      <Button color="blue" size="md">
+        Medium Button
+      </Button>
+      <Button color="white" size="lg">
+        Large Button
+      </Button>
+
+      <h2>Inputs</h2>
+      <Input color="blue" placeholder="Blue Input" />
+      <Input color="red" placeholder="Red Input" />
+      <Input color="dark" placeholder="Dark Input" label="Name" />
+      <Input color="green" placeholder="Green Input" label="Other Name" />
+
+      <h2>Modals</h2>
+      <Button color="blue" onClick={openModal}>
+        Open Modal
+      </Button>
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <ModalTitle>Modal Title</ModalTitle>
+        <p>Modal Content</p> {/* Added some content */}
+        <ModalFooter>
+          <Button onClick={closeModal}>Cancel</Button> {/* Simplified button */}
+          <Button color="blue">Accept</Button>
+        </ModalFooter>
+      </Modal>
+
+      <h2>Progress</h2>
+      <Progress value={30} color="dark" label="30% Completed" /> {/* Improved label */}
+
+      <h2>Select</h2>
+      <Select options={options} searchable size="sm" placeholder="Search Fruit" />
+    </div>
+  );
+}

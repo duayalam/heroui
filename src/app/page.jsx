@@ -8,6 +8,7 @@ import {
   ModalFooter,
   Progress,
   Select,
+  CodeBlock 
 } from "@/components/index";
 import { useState } from "react";
 export default function Home() {
@@ -24,6 +25,13 @@ export default function Home() {
     { value: "date", label: "Date" },
     { value: "elderberry", label: "Elderberry" },
   ];
+
+  //CODEBLOCK
+  const code = `
+  <Button color="white" size={"sm"}>
+        Botón
+  </Button>
+`;
 
   return (
     <div className="p-5">
@@ -87,6 +95,13 @@ export default function Home() {
       <b>Select</b>
       <br />
       <Select options={options} searchable={true} size={'sm'} placeholder="Buscar fruta" />
+
+      <br />
+      <b>CodeBlock</b>
+      <br />
+      
+      <CodeBlock code={code} language="jsx" preview={true} />
+  
     </div>
   );
 }

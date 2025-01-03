@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from "react";
 
 const Select = ({ options, searchable = false, placeholder = "Selecciona una opción",size, ...props }) => {
