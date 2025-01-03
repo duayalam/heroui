@@ -1,50 +1,38 @@
 "use client";
 import { Button, CodeBlock } from "@/components/index";
+
 const PageButton = () => {
-  const Code = () => {
-    <Button>Botón</Button>;
-  };
-  const sizes = `<Button color="white" size={"sm"}>
-        Botón
-      </Button>
-      <Button color="blue" size={"md"}>
-        Botón
-      </Button>
-      <Button color="white" size={"lg"}>
-        Botón
-      </Button>`;
   return (
     <div className="p-5">
-      <b className="text-[20px]">Tailwind CSS Button - React</b>
-      <p class="text-gray-700 mb-4">
-        Use our <span class="font-semibold text-blue-600">Button</span> based on
-        Tailwind CSS for actions in forms, dialogues, and more.
+      <h2 className="text-2xl font-semibold mb-4">Tailwind CSS Button - React</h2>
+      <p className="text-gray-700 mb-4">
+        Our <span className="font-semibold text-blue-600">Button</span> component, built with Tailwind CSS, is ideal for actions in forms, dialogues, and more.
       </p>
 
-      <p class="text-gray-700 mb-4">
-        Button is an essential element of web design. Basically, Button is
-        styled links that grab the user's attention. They help users navigate
-        our websites or apps and drive them to a particular action like
-        submitting a contact form or placing an order as easy as possible.
+      <p className="text-gray-700 mb-4">
+        Buttons are crucial in web design, acting as styled links that attract user attention. They help guide users to take actions like submitting forms or placing orders.
       </p>
 
-      <p class="text-gray-700 mb-4">
-        See below our <span class="font-semibold text-blue-600">Button</span>{" "}
-        example that you can use in your Tailwind CSS and React project. The
-        example also comes in different styles and colors, so you can adapt it
-        easily to your needs.
+      <p className="text-gray-700 mb-4">
+        Below is an example of our <span className="font-semibold text-blue-600">Button</span> component, demonstrating various styles and colors that can be easily integrated into your Tailwind CSS and React projects.
       </p>
 
-      <CodeBlock language="jsx" preview={true}><Code/></CodeBlock>
-      <br />
+      <CodeBlock language="jsx" preview={true}>
+        <Button>Click Me</Button>
+      </CodeBlock>
 
-      <b className="text-[20px] mt-5">Button Sizes</b>
-      <p class="text-gray-700 mb-4">
-        The Button component offers three different sizes, which can be adjusted
-        using the size prop.
+      <h3 className="text-xl font-semibold mt-5">Button Sizes</h3>
+      <p className="text-gray-700 mb-4">
+        The Button component supports three sizes: small, medium, and large. You can easily adjust the size using the <code>size</code> prop.
       </p>
-      {/* <CodeBlock code={sizes} language="jsx" preview={true} /> */}
+
+      <CodeBlock language="jsx" preview={true}>
+        <Button color="red" size="sm">Small Button</Button>
+        <Button color="blue" size="md">Medium Button</Button>
+        <Button color="green" size="lg">Large Button</Button>
+      </CodeBlock>
     </div>
   );
 };
+
 export default PageButton;

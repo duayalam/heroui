@@ -4,7 +4,7 @@ import Ripples from 'react-ripples'
 const Button = ({ color, size, className, ...props }) => {
 
 
-    var buttonDefault = "rounded m-1 "
+    var buttonDefault = "rounded "
 
     //COLORES
     var colors = {
@@ -34,7 +34,7 @@ const Button = ({ color, size, className, ...props }) => {
 
 
     return (
-        <Ripples className={`rounded backdrop-opacity-5 ${className?className:''}`} >
+        <Ripples className={`rounded backdrop-opacity-5 ${className?className:''} m-1`} >
             <button  className={`${buttonDefault} ${className?className:''}`} {...props}>{props.children}</button>
         </Ripples>
     )

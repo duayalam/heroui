@@ -7,6 +7,8 @@ import {
 } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { FaClipboard, FaEye, FaEyeSlash } from "react-icons/fa";
 import { Button } from "../index";
+import jsxToString from 'jsx-to-string';
+
 
 
 const CodeBlock = ({ children, language, theme = "dracula", preview = false }) => {
@@ -15,23 +17,33 @@ const CodeBlock = ({ children, language, theme = "dracula", preview = false }) =
   const style = theme === "dracula" ? dracula : solarizedlight;
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(code).then(() => {
+    navigator.clipboard.writeText(Array.isArray(children)
+    ? jsxToString(<div>{children}</div>)
+    : jsxToString(children)).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
   };
 
   // Para demostración, renderizamos el botón directamente
+
   const previewContent = (
+    <>
     {children}
+    </>
+    
+
   );
-  const buttonString = ReactDOMServer.renderToStaticMarkup(children);
+  const buttonString = Array.isArray(children)
+  ? jsxToString(<div>{children}</div>)
+  : jsxToString(children);
+
 
   return (
     <div className="bg-gray-900 relative rounded-lg overflow-hidden">
       {showPreview && <div className="text-center bg-white p-4">{previewContent}</div>}
       <div className="flex justify-between items-center p-2 border-b border-gray-700">
-        <div className="text-white text-[12px]">{language}</div>
+        <div className="text-white text-[12px]">{language.toUpperCase()}</div>
         <div className="flex gap-2">
           <Button
             onClick={() => setShowPreview(!showPreview)}
